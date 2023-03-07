@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace AdminKit\Porto\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PortoCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'porto';
 
     public $description = 'My command';
 
