@@ -2,8 +2,8 @@
 
 namespace AdminKit\Porto\Abstracts\Providers;
 
-use Apiato\Core\Loaders\AliasesLoaderTrait;
-use Apiato\Core\Loaders\ProvidersLoaderTrait;
+use AdminKit\Porto\Loaders\AliasesLoaderTrait;
+use AdminKit\Porto\Loaders\ProvidersLoaderTrait;
 use Illuminate\Support\ServiceProvider as LaravelAppServiceProvider;
 
 abstract class MainServiceProvider extends LaravelAppServiceProvider
