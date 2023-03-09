@@ -65,6 +65,10 @@ trait ProvidersLoaderTrait
 
     public function loadShipServiceProviderFromShip(): void
     {
-        $this->loadProvider('App\Ship\Providers\ShipProvider');
+        $shipProvider = 'App\Ship\Providers\ShipProvider';
+
+        if (class_exists($shipProvider)) {
+            $this->loadProvider($shipProvider);
+        }
     }
 }
