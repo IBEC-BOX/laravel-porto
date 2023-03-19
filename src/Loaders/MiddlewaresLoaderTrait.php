@@ -9,6 +9,7 @@ trait MiddlewaresLoaderTrait
 {
     /**
      * @void
+     *
      * @throws BindingResolutionException
      */
     public function loadMiddlewares()
@@ -22,7 +23,6 @@ trait MiddlewaresLoaderTrait
     /**
      * Registering Route Group's
      *
-     * @param array $middlewares
      * @throws BindingResolutionException
      */
     private function registerMiddleware(array $middlewares = [])
@@ -36,13 +36,11 @@ trait MiddlewaresLoaderTrait
 
     /**
      * Registering Route Group's
-     *
-     * @param array $middlewareGroups
      */
     private function registerMiddlewareGroups(array $middlewareGroups = [])
     {
         foreach ($middlewareGroups as $key => $middleware) {
-            if (!is_array($middleware)) {
+            if (! is_array($middleware)) {
                 $this->app['router']->pushMiddlewareToGroup($key, $middleware);
             } else {
                 foreach ($middleware as $item) {
@@ -54,13 +52,11 @@ trait MiddlewaresLoaderTrait
 
     /**
      * Registering Route Middleware's priority
-     *
-     * @param array $middlewarePriority
      */
     private function registerMiddlewarePriority(array $middlewarePriority = [])
     {
         foreach ($middlewarePriority as $key => $middleware) {
-            if (!in_array($middleware, $this->app['router']->middlewarePriority)) {
+            if (! in_array($middleware, $this->app['router']->middlewarePriority)) {
                 $this->app['router']->middlewarePriority[] = $middleware;
             }
         }
@@ -68,8 +64,6 @@ trait MiddlewaresLoaderTrait
 
     /**
      * Registering Route Middleware's
-     *
-     * @param array $routeMiddleware
      */
     private function registerRouteMiddleware(array $routeMiddleware = [])
     {

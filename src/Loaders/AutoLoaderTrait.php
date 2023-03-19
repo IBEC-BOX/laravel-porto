@@ -2,8 +2,6 @@
 
 namespace AdminKit\Porto\Loaders;
 
-use AdminKit\Porto\Facades\Porto;
-
 trait AutoLoaderTrait
 {
     // Using each component loader trait
@@ -15,6 +13,7 @@ trait AutoLoaderTrait
     use CommandsLoaderTrait;
     use AliasesLoaderTrait;
     use HelpersLoaderTrait;
+    use PathsLoaderTrait;
 
     public function runLoaderBoot(): void
     {
@@ -25,7 +24,7 @@ trait AutoLoaderTrait
         $this->loadCommandsFromShip();
 
         // Iterate over all the containers folders and autoload most of the components
-        foreach (Porto::getAllContainerPaths() as $containerPath) {
+        foreach ($this->getAllContainerPaths() as $containerPath) {
             $this->loadMigrationsFromContainers($containerPath);
             $this->loadLocalsFromContainers($containerPath);
             $this->loadViewsFromContainers($containerPath);
@@ -39,7 +38,7 @@ trait AutoLoaderTrait
         $this->loadConfigsFromShip();
         $this->loadShipServiceProviderFromShip();
 
-        foreach (Porto::getAllContainerPaths() as $containerPath) {
+        foreach ($this->getAllContainerPaths() as $containerPath) {
             $this->loadConfigsFromContainers($containerPath);
             $this->loadMainServiceProvidersFromContainers($containerPath);
         }

@@ -7,9 +7,11 @@ use Illuminate\Support\Str;
 
 trait LocalizationLoaderTrait
 {
+    use PathsLoaderTrait;
+
     public function loadLocalsFromContainers($containerPath): void
     {
-        $containerLocaleDirectory = $containerPath . '/Languages';
+        $containerLocaleDirectory = $containerPath.'/Languages';
         $containerName = basename($containerPath);
         $pathParts = explode(DIRECTORY_SEPARATOR, $containerPath);
         $sectionName = $pathParts[count($pathParts) - 2];
@@ -27,14 +29,14 @@ trait LocalizationLoaderTrait
 
     private function buildLocaleNamespace(?string $sectionName, string $containerName): string
     {
-        return $sectionName ? (Str::camel($sectionName) . '@' . Str::camel($containerName)) : Str::camel(
+        return $sectionName ? (Str::camel($sectionName).'@'.Str::camel($containerName)) : Str::camel(
             $containerName
         );
     }
 
     public function loadLocalsFromShip(): void
     {
-        $shipLocaleDirectory = base_path('app/Ship/Languages');
-        $this->loadLocals($shipLocaleDirectory, 'ship');
+        $shipLocaleDirectory = $this->getShipPath().'/Languages';
+        $this->loadLocals($shipLocaleDirectory, $this->shipFolderName);
     }
 }

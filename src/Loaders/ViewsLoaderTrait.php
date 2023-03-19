@@ -9,8 +9,8 @@ trait ViewsLoaderTrait
 {
     public function loadViewsFromContainers($containerPath): void
     {
-        $containerViewDirectory = $containerPath . '/UI/WEB/Views/';
-        $containerMailTemplatesDirectory = $containerPath . '/Mails/Templates/';
+        $containerViewDirectory = $containerPath.'/UI/WEB/Views/';
+        $containerMailTemplatesDirectory = $containerPath.'/Mails/Templates/';
 
         $containerName = basename($containerPath);
         $pathParts = explode(DIRECTORY_SEPARATOR, $containerPath);
@@ -29,14 +29,14 @@ trait ViewsLoaderTrait
 
     private function buildViewNamespace(?string $sectionName, string $containerName): string
     {
-        return $sectionName ? (Str::camel($sectionName) . '@' . Str::camel($containerName)) : Str::camel(
+        return $sectionName ? (Str::camel($sectionName).'@'.Str::camel($containerName)) : Str::camel(
             $containerName
         );
     }
 
     public function loadViewsFromShip(): void
     {
-        $shipMailTemplatesDirectory = base_path('app/Ship/Mails/Templates/');
+        $shipMailTemplatesDirectory = $this->getShipPath().'/Mails/Templates/';
         $this->loadViews($shipMailTemplatesDirectory, 'ship'); // Ship views accessible via `ship::`.
     }
 }

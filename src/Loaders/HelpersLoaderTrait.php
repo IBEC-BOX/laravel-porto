@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\File;
 
 trait HelpersLoaderTrait
 {
+    use PathsLoaderTrait;
+
     public function loadHelpersFromContainers($containerPath): void
     {
-        $containerHelpersDirectory = $containerPath . '/Helpers';
+        $containerHelpersDirectory = $containerPath.'/Helpers';
         $this->loadHelpers($containerHelpersDirectory);
     }
 
@@ -20,7 +22,7 @@ trait HelpersLoaderTrait
 
             foreach ($files as $file) {
                 try {
-                    require($file);
+                    require $file;
                 } catch (FileNotFoundException $e) {
                 }
             }
@@ -29,7 +31,7 @@ trait HelpersLoaderTrait
 
     public function loadHelpersFromShip(): void
     {
-        $shipHelpersDirectory = base_path('app/Ship/Helpers');
+        $shipHelpersDirectory = $this->getShipPath().'/Helpers';
         $this->loadHelpers($shipHelpersDirectory);
     }
 }

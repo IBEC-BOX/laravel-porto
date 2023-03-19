@@ -2,23 +2,23 @@
 
 namespace AdminKit\Porto\Loaders;
 
-use AdminKit\Porto\Facades\Porto;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 trait ProvidersLoaderTrait
 {
+    use PathsLoaderTrait;
+
     /**
      * Loads only the Main Service Providers from the Containers.
      * All the Service Providers (registered inside the main), will be
      * loaded from the `boot()` function on the parent of the Main
      * Service Providers.
-     * @param $containerPath
      */
     public function loadMainServiceProvidersFromContainers($containerPath): static
     {
-        $containerProvidersDirectory = $containerPath . '/Providers';
+        $containerProvidersDirectory = $containerPath.'/Providers';
         $this->loadProviders($containerProvidersDirectory);
 
         return $this;
@@ -35,7 +35,7 @@ trait ProvidersLoaderTrait
                 if (File::isFile($file)) {
                     // Check if this is the Main Service Provider
                     if (Str::startsWith($file->getFilename(), $mainServiceProviderNameStartWith)) {
-                        $serviceProviderClass = Porto::getClassFullNameFromFile($file->getPathname());
+                        $serviceProviderClass = $this->getClassFullNameFromFile($file->getPathname());
                         $this->loadProvider($serviceProviderClass);
                     }
                 }
@@ -65,10 +65,11 @@ trait ProvidersLoaderTrait
 
     public function loadShipServiceProviderFromShip(): void
     {
-        $shipProvider = 'App\Ship\Providers\ShipProvider';
+        $shipProviderFile = $this->getShipPath().'/Providers/ShipProvider.php';
 
-        if (class_exists($shipProvider)) {
-            $this->loadProvider($shipProvider);
+        if (file_exists($shipProviderFile)) {
+            $shipProviderClass = $this->getClassFullNameFromFile($shipProviderFile);
+            $this->loadProvider($shipProviderClass);
         }
     }
 }

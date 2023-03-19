@@ -18,10 +18,6 @@ trait AliasesLoaderTrait
         return $this;
     }
 
-    /**
-     * @param $aliasKey
-     * @param $aliasValue
-     */
     private function loadAlias($aliasKey, $aliasValue): void
     {
         AliasLoader::getInstance()->alias($aliasKey, $aliasValue);

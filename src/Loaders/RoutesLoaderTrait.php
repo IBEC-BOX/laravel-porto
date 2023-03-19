@@ -2,7 +2,6 @@
 
 namespace AdminKit\Porto\Loaders;
 
-use AdminKit\Porto\Facades\Porto;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -14,12 +13,14 @@ use Symfony\Component\Finder\SplFileInfo;
 
 trait RoutesLoaderTrait
 {
+    use PathsLoaderTrait;
+
     /**
      * Register all the containers routes files in the framework
      */
     public function runRoutesAutoLoader(): void
     {
-        $containersPaths = Porto::getAllContainerPaths();
+        $containersPaths = $this->getAllContainerPaths();
 
         foreach ($containersPaths as $containerPath) {
             $this->loadApiContainerRoutes($containerPath);
@@ -29,14 +30,13 @@ trait RoutesLoaderTrait
 
     /**
      * Register the Containers API routes files
-     * @param string $containerPath
      */
     private function loadApiContainerRoutes(string $containerPath): void
     {
         // Build the container api routes path
-        $apiRoutesPath = $containerPath . '/UI/API/Routes';
+        $apiRoutesPath = $containerPath.'/UI/API/Routes';
         // Build the namespace from the path
-        $controllerNamespace = $containerPath . '\\UI\API\Controllers';
+        $controllerNamespace = $containerPath.'\\UI\API\Controllers';
 
         if (File::isDirectory($apiRoutesPath)) {
             $files = File::allFiles($apiRoutesPath);
@@ -49,10 +49,6 @@ trait RoutesLoaderTrait
         }
     }
 
-    /**
-     * @param $file
-     * @param $controllerNamespace
-     */
     private function loadApiRoute($file, $controllerNamespace): void
     {
         $routeGroupArray = $this->getRouteGroup($file, $controllerNamespace);
@@ -63,10 +59,7 @@ trait RoutesLoaderTrait
     }
 
     /**
-     * @param      $endpointFileOrPrefixString
-     * @param null $controllerNamespace
-     *
-     * @return  array
+     * @param  null  $controllerNamespace
      */
     public function getRouteGroup($endpointFileOrPrefixString, $controllerNamespace = null): array
     {
@@ -81,9 +74,6 @@ trait RoutesLoaderTrait
         ];
     }
 
-    /**
-     * @return  array
-     */
     private function getMiddlewares(): array
     {
         return array_filter([
@@ -92,9 +82,6 @@ trait RoutesLoaderTrait
         ]);
     }
 
-    /**
-     * @return  null|string
-     */
     private function getRateLimitMiddleware(): ?string
     {
         $rateLimitMiddleware = null;
@@ -121,23 +108,13 @@ trait RoutesLoaderTrait
         return Config::get('apiato.api.url');
     }
 
-    /**
-     * @param $file
-     *
-     * @return  string
-     */
     private function getApiVersionPrefix($file): string
     {
-        return Config::get('apiato.api.prefix') . (Config::get(
-                'apiato.api.enable_version_prefix'
-            ) ? $this->getRouteFileVersionFromFileName($file) : '');
+        return Config::get('apiato.api.prefix').(Config::get(
+            'apiato.api.enable_version_prefix'
+        ) ? $this->getRouteFileVersionFromFileName($file) : '');
     }
 
-    /**
-     * @param $file
-     *
-     * @return  string|bool
-     */
     private function getRouteFileVersionFromFileName($file): string|bool
     {
         $fileNameWithoutExtension = $this->getRouteFileNameWithoutExtension($file);
@@ -156,11 +133,6 @@ trait RoutesLoaderTrait
         return $apiVersion;
     }
 
-    /**
-     * @param SplFileInfo $file
-     *
-     * @return  mixed
-     */
     private function getRouteFileNameWithoutExtension(SplFileInfo $file): mixed
     {
         return pathinfo($file->getFileName())['filename'];
@@ -168,15 +140,13 @@ trait RoutesLoaderTrait
 
     /**
      * Register the Containers WEB routes files
-     *
-     * @param $containerPath
      */
     private function loadWebContainerRoutes($containerPath): void
     {
         // build the container web routes path
-        $webRoutesPath = $containerPath . '/UI/WEB/Routes';
+        $webRoutesPath = $containerPath.'/UI/WEB/Routes';
         // build the namespace from the path
-        $controllerNamespace = $containerPath . '\\UI\WEB\Controllers';
+        $controllerNamespace = $containerPath.'\\UI\WEB\Controllers';
 
         if (File::isDirectory($webRoutesPath)) {
             $files = File::allFiles($webRoutesPath);
@@ -189,10 +159,6 @@ trait RoutesLoaderTrait
         }
     }
 
-    /**
-     * @param $file
-     * @param $controllerNamespace
-     */
     private function loadWebRoute($file, $controllerNamespace): void
     {
         Route::group([

@@ -2,10 +2,10 @@
 
 namespace AdminKit\Porto;
 
+use AdminKit\Porto\Commands\PortoCommand;
 use AdminKit\Porto\Loaders\AutoLoaderTrait;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use AdminKit\Porto\Commands\PortoCommand;
 
 class PortoServiceProvider extends PackageServiceProvider
 {
@@ -26,11 +26,15 @@ class PortoServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        $this->runLoaderBoot();
+        $this
+            ->initPorto(portoPath: app_path())
+            ->runLoaderBoot();
     }
 
     public function registeringPackage()
     {
-        $this->runLoaderRegister();
+        $this
+            ->initPorto(portoPath: app_path())
+            ->runLoaderRegister();
     }
 }

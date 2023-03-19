@@ -6,9 +6,6 @@ trait CyrillicChars
 {
     /**
      * save cyrillic characters to the database
-     *
-     * @param  mixed  $value
-     * @return string
      */
     public function asJson(mixed $value): string
     {

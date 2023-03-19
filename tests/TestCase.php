@@ -2,9 +2,9 @@
 
 namespace AdminKit\Porto\Tests;
 
+use AdminKit\Porto\PortoServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AdminKit\Porto\PortoServiceProvider;
 
 class TestCase extends Orchestra
 {

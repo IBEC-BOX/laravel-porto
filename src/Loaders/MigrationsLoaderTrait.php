@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\File;
 
 trait MigrationsLoaderTrait
 {
+    use PathsLoaderTrait;
+
     public function loadMigrationsFromContainers($containerPath): void
     {
-        $containerMigrationDirectory = $containerPath . '/Data/Migrations';
+        $containerMigrationDirectory = $containerPath.'/Data/Migrations';
         $this->loadMigrations($containerMigrationDirectory);
     }
 
@@ -21,7 +23,7 @@ trait MigrationsLoaderTrait
 
     public function loadMigrationsFromShip(): void
     {
-        $shipMigrationDirectory = base_path('app/Ship/Migrations');
+        $shipMigrationDirectory = $this->getShipPath().'/Migrations';
         $this->loadMigrations($shipMigrationDirectory);
     }
 }

@@ -2,14 +2,15 @@
 
 namespace AdminKit\Porto\Loaders;
 
-
 use Illuminate\Support\Facades\File;
 
 trait ConfigsLoaderTrait
 {
+    use PathsLoaderTrait;
+
     public function loadConfigsFromShip(): void
     {
-        $shipConfigsDirectory = base_path('app/Ship/Configs');
+        $shipConfigsDirectory = $this->getShipPath().'/Configs';
         $this->loadConfigs($shipConfigsDirectory);
     }
 
@@ -20,7 +21,7 @@ trait ConfigsLoaderTrait
 
             foreach ($files as $file) {
                 $name = File::name($file);
-                $path = $configFolder . '/' . $name . '.php';
+                $path = $configFolder.'/'.$name.'.php';
 
                 $this->mergeConfigFrom($path, $name);
             }
@@ -29,7 +30,7 @@ trait ConfigsLoaderTrait
 
     public function loadConfigsFromContainers($containerPath): void
     {
-        $containerConfigsDirectory = $containerPath . '/Configs';
+        $containerConfigsDirectory = $containerPath.'/Configs';
         $this->loadConfigs($containerConfigsDirectory);
     }
 }
