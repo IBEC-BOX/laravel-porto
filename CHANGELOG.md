@@ -2,6 +2,11 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v1.0.3 - 2023-03-20
+
+- add PathsLoader trait
+- update CHANGELOG.md
+
 ## v1.0.2 - 2023-03-19
 
 - create PathLoader trait
