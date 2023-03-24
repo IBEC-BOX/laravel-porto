@@ -18,7 +18,6 @@ trait AutoLoaderTrait
     public function runLoaderBoot(): void
     {
         $this->loadMigrationsFromShip();
-        $this->loadLocalsFromShip();
         $this->loadViewsFromShip();
         $this->loadHelpersFromShip();
         $this->loadCommandsFromShip();
@@ -26,7 +25,6 @@ trait AutoLoaderTrait
         // Iterate over all the containers folders and autoload most of the components
         foreach ($this->getAllContainerPaths() as $containerPath) {
             $this->loadMigrationsFromContainers($containerPath);
-            $this->loadLocalsFromContainers($containerPath);
             $this->loadViewsFromContainers($containerPath);
             $this->loadHelpersFromContainers($containerPath);
             $this->loadCommandsFromContainers($containerPath);
@@ -37,10 +35,12 @@ trait AutoLoaderTrait
     {
         $this->loadConfigsFromShip();
         $this->loadShipServiceProviderFromShip();
+        $this->loadLocalsFromShip();
 
         foreach ($this->getAllContainerPaths() as $containerPath) {
             $this->loadConfigsFromContainers($containerPath);
             $this->loadMainServiceProvidersFromContainers($containerPath);
+            $this->loadLocalsFromContainers($containerPath);
         }
     }
 }
