@@ -5,7 +5,6 @@ namespace AdminKit\Porto\Loaders;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
@@ -88,11 +87,11 @@ trait RoutesLoaderTrait
     {
         $rateLimitMiddleware = null;
 
-        if (Config::get('porto.api.throttle.enabled')) {
+        if (config('porto.api.throttle.enabled')) {
             RateLimiter::for('api', function (Request $request) {
                 return Limit::perMinutes(
-                    Config::get('porto.api.throttle.expires'),
-                    Config::get('porto.api.throttle.attempts')
+                    config('porto.api.throttle.expires'),
+                    config('porto.api.throttle.attempts')
                 )->by($request->user()?->id ?: $request->ip());
             });
 
@@ -107,7 +106,7 @@ trait RoutesLoaderTrait
      */
     private function getApiUrl()
     {
-        return Config::get('porto.api.url');
+        return config('porto.api.url');
     }
 
     private function getApiVersionPrefix($file): string
