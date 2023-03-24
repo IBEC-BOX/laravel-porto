@@ -88,11 +88,11 @@ trait RoutesLoaderTrait
     {
         $rateLimitMiddleware = null;
 
-        if (Config::get('apiato.api.throttle.enabled')) {
+        if (Config::get('porto.api.throttle.enabled')) {
             RateLimiter::for('api', function (Request $request) {
                 return Limit::perMinutes(
-                    Config::get('apiato.api.throttle.expires'),
-                    Config::get('apiato.api.throttle.attempts')
+                    Config::get('porto.api.throttle.expires'),
+                    Config::get('porto.api.throttle.attempts')
                 )->by($request->user()?->id ?: $request->ip());
             });
 
@@ -107,14 +107,15 @@ trait RoutesLoaderTrait
      */
     private function getApiUrl()
     {
-        return Config::get('apiato.api.url');
+        return Config::get('porto.api.url');
     }
 
     private function getApiVersionPrefix($file): string
     {
-        return Config::get('apiato.api.prefix').(Config::get(
-            'apiato.api.enable_version_prefix'
-        ) ? $this->getRouteFileVersionFromFileName($file) : '');
+        $prefix = trim(config('porto.api.prefix'), " /\t\n\r\0\x0B");
+        $version = config('porto.api.enable_version_prefix') ? $this->getRouteFileVersionFromFileName($file) : '';
+
+        return $prefix.'/'.$version;
     }
 
     private function getRouteFileVersionFromFileName($file): string|bool
