@@ -1,12 +1,12 @@
 {
-    "name": "admin-kit/porto",
+    "name": "ibecsystems/laravel-porto",
     "description": "This package implements the Porto, a modern Software Architectural Pattern",
     "keywords": [
         "admin-kit",
         "laravel",
         "porto"
     ],
-    "homepage": "https://github.com/admin-kit/porto",
+    "homepage": "https://github.com/ibecsystems/laravel-porto",
     "license": "MIT",
     "authors": [
         {
