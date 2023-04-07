@@ -3,6 +3,7 @@
 namespace AdminKit\Porto;
 
 use AdminKit\Porto\Commands\PortoCommand;
+use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use AdminKit\Porto\Loaders\AutoLoaderTrait;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -36,5 +37,7 @@ class PortoServiceProvider extends PackageServiceProvider
         $this
             ->initPorto(portoPath: app_path())
             ->runLoaderRegister();
+
+        $this->app->register(GeneratorsServiceProvider::class);
     }
 }
