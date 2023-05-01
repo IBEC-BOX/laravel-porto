@@ -10,8 +10,8 @@ trait MigrationsLoaderTrait
 
     public function loadMigrationsFromContainers($containerPath): void
     {
-        $containerMigrationDirectory = $containerPath.'/Data/Migrations';
-        $this->loadMigrations($containerMigrationDirectory);
+        $this->loadMigrations($containerPath.'/Data/Migrations'); // TODO remove this line in v2
+        $this->loadMigrations($containerPath.'/Database/Migrations');
     }
 
     private function loadMigrations($directory): void
@@ -23,7 +23,6 @@ trait MigrationsLoaderTrait
 
     public function loadMigrationsFromShip(): void
     {
-        $shipMigrationDirectory = $this->getShipPath().'/Migrations';
-        $this->loadMigrations($shipMigrationDirectory);
+        $this->loadMigrations($this->getShipPath().'/Migrations');
     }
 }

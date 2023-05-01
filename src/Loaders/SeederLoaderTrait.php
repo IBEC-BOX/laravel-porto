@@ -14,8 +14,6 @@ trait SeederLoaderTrait
 {
     use PathsLoaderTrait;
 
-    protected string $seedersPath = '/Data/Seeders';
-
     public function runLoadingSeeders(): void
     {
         $this->loadSeedersFromContainers();
@@ -29,8 +27,8 @@ trait SeederLoaderTrait
 
         foreach ($this->getSectionNames() as $sectionName) {
             foreach ($this->getSectionContainerNames($sectionName) as $containerName) {
-                $containersDirectories[] = $this->portoPath.
-                    '/Containers/'.$sectionName.'/'.$containerName.$this->seedersPath;
+                $containersDirectories[] = $this->portoPath.'/Containers/'.$sectionName.'/'.$containerName.'/Data/Seeders'; // TODO remove this line in v2
+                $containersDirectories[] = $this->portoPath.'/Containers/'.$sectionName.'/'.$containerName.'/Database/Seeders';
             }
         }
 
