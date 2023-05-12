@@ -2,6 +2,12 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.0 - 2023-05-12
+
+- removed total autoload containers and ship
+- refactored more code
+- removed unused code
+
 ## v1.0.6 - 2023-05-01
 
 - add /Database folder beside with /Data
