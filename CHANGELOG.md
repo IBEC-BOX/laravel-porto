@@ -2,6 +2,10 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.1 - 2023-05-12
+
+fix deploy branch name
+
 ## v1.0.6 - 2023-05-01
 
 - add /Database folder beside with /Data
