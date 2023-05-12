@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use Symfony\Component\Finder\SplFileInfo;
 
 trait RoutesLoaderTrait
@@ -25,7 +24,6 @@ trait RoutesLoaderTrait
         foreach ($containersPaths as $containerPath) {
             $this->loadApiContainerRoutes($containerPath);
             $this->loadWebContainerRoutes($containerPath);
-            $this->loadPlatformContainerRoutes($containerPath);
         }
     }
 
@@ -169,36 +167,5 @@ trait RoutesLoaderTrait
         ], function ($router) use ($file) {
             require $file->getPathname();
         });
-    }
-
-    /**
-     * Register the Containers PLATFORM routes files
-     */
-    private function loadPlatformContainerRoutes($containerPath): void
-    {
-        // build the container web routes path
-        $webRoutesPath = $containerPath.'/UI/Platform/Routes';
-        // build the namespace from the path
-        $controllerNamespace = $containerPath.'\\UI\Platform\Controllers';
-
-        if (File::isDirectory($webRoutesPath)) {
-            $files = File::allFiles($webRoutesPath);
-            $files = Arr::sort($files, function ($file) {
-                return $file->getFilename();
-            });
-            foreach ($files as $file) {
-                $this->loadPlatformRoute($file);
-            }
-        }
-    }
-
-    private function loadPlatformRoute($file): void
-    {
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Str::start(config('platform.prefix'), '/'))
-            ->middleware(config('platform.middleware.private'))
-            ->group(function ($router) use ($file) {
-                require $file->getPathname();
-            });
     }
 }

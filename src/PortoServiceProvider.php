@@ -2,7 +2,6 @@
 
 namespace AdminKit\Porto;
 
-use AdminKit\Porto\Commands\PortoCommand;
 use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use AdminKit\Porto\Loaders\AutoLoaderTrait;
 use Spatie\LaravelPackageTools\Package;
@@ -21,8 +20,7 @@ class PortoServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('porto')
-            ->hasConfigFile()
-            ->hasCommand(PortoCommand::class);
+            ->hasConfigFile();
     }
 
     public function bootingPackage()
