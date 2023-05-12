@@ -33,10 +33,4 @@ trait ViewsLoaderTrait
             $containerName
         );
     }
-
-    public function loadViewsFromShip(): void
-    {
-        $shipMailTemplatesDirectory = $this->getShipPath().'/Mails/Templates/';
-        $this->loadViews($shipMailTemplatesDirectory, 'ship'); // Ship views accessible via `ship::`.
-    }
 }

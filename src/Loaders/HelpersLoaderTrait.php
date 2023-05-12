@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\File;
 
 trait HelpersLoaderTrait
 {
-    use PathsLoaderTrait;
-
     public function loadHelpersFromContainers($containerPath): void
     {
         $containerHelpersDirectory = $containerPath.'/Helpers';
@@ -27,11 +25,5 @@ trait HelpersLoaderTrait
                 }
             }
         }
-    }
-
-    public function loadHelpersFromShip(): void
-    {
-        $shipHelpersDirectory = $this->getShipPath().'/Helpers';
-        $this->loadHelpers($shipHelpersDirectory);
     }
 }

@@ -6,14 +6,6 @@ use Illuminate\Support\Facades\File;
 
 trait ConfigsLoaderTrait
 {
-    use PathsLoaderTrait;
-
-    public function loadConfigsFromShip(): void
-    {
-        $shipConfigsDirectory = $this->getShipPath().'/Configs';
-        $this->loadConfigs($shipConfigsDirectory);
-    }
-
     private function loadConfigs($configFolder): void
     {
         if (File::isDirectory($configFolder)) {

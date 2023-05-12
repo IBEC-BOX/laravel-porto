@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\File;
 
 trait CommandsLoaderTrait
 {
-    use PathsLoaderTrait;
-
     public function loadCommandsFromContainers($containerPath): void
     {
         $containerCommandsDirectory = $containerPath.'/UI/CLI/Commands';
@@ -34,11 +32,5 @@ trait CommandsLoaderTrait
     private function isRouteFile($consoleFile): bool
     {
         return $consoleFile->getFilename() === 'closures.php';
-    }
-
-    public function loadCommandsFromShip(): void
-    {
-        $shipCommandsDirectory = $this->getShipPath().'/Commands';
-        $this->loadTheConsoles($shipCommandsDirectory);
     }
 }

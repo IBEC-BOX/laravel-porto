@@ -7,8 +7,6 @@ use Illuminate\Support\Str;
 
 trait LocalizationLoaderTrait
 {
-    use PathsLoaderTrait;
-
     public function loadLocalsFromContainers($containerPath): void
     {
         $containerLocaleDirectory = $containerPath.'/Languages';
@@ -32,11 +30,5 @@ trait LocalizationLoaderTrait
         return $sectionName ? (Str::camel($sectionName).'@'.Str::camel($containerName)) : Str::camel(
             $containerName
         );
-    }
-
-    public function loadLocalsFromShip(): void
-    {
-        $shipLocaleDirectory = $this->getShipPath().'/Languages';
-        $this->loadLocals($shipLocaleDirectory, $this->shipFolderName);
     }
 }

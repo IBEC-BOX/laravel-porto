@@ -12,19 +12,13 @@ use Symfony\Component\Finder\SplFileInfo;
 
 trait RoutesLoaderTrait
 {
-    use PathsLoaderTrait;
-
     /**
      * Register all the containers routes files in the framework
      */
     public function runRoutesAutoLoader(): void
     {
-        $containersPaths = $this->getAllContainerPaths();
-
-        foreach ($containersPaths as $containerPath) {
-            $this->loadApiContainerRoutes($containerPath);
-            $this->loadWebContainerRoutes($containerPath);
-        }
+        $this->loadApiContainerRoutes($this->containerPath);
+        $this->loadWebContainerRoutes($this->containerPath);
     }
 
     /**
