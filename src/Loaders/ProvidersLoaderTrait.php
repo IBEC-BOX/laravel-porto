@@ -15,7 +15,7 @@ trait ProvidersLoaderTrait
     public function loadServiceProviders(): static
     {
         // `$this->serviceProviders` is declared on each Container's Main Service Provider
-        foreach ($this->serviceProviders as $serviceProvider) {
+        foreach ($this->serviceProviders ?? [] as $serviceProvider) {
             $this->loadProvider($serviceProvider);
         }
 
