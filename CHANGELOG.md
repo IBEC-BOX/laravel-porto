@@ -2,6 +2,10 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.2 - 2023-05-14
+
+fix autoload service providers
+
 ## v2.0.1 - 2023-05-12
 
 fix deploy branch name
