@@ -41,10 +41,10 @@ trait MiddlewaresLoaderTrait
     {
         foreach ($middlewareGroups as $key => $middleware) {
             if (! is_array($middleware)) {
-                $this->app['router']->pushMiddlewareToGroup($key, $middleware);
+                $this->app->booted(fn () => $this->app['router']->pushMiddlewareToGroup($key, $middleware));
             } else {
                 foreach ($middleware as $item) {
-                    $this->app['router']->pushMiddlewareToGroup($key, $item);
+                    $this->app->booted(fn () => $this->app['router']->pushMiddlewareToGroup($key, $item));
                 }
             }
         }
