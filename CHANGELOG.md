@@ -2,6 +2,11 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.5 - 2023-05-17
+
+- fix run-tests.yml
+- fix phpstan errors
+
 ## v2.0.4 - 2023-05-17
 
 - require laravel 10
