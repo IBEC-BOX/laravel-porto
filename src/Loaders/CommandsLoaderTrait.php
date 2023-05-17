@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\File;
 
 trait CommandsLoaderTrait
 {
+    use PathsLoaderTrait;
+
     public function loadCommandsFromContainers($containerPath): void
     {
         $containerCommandsDirectory = $containerPath.'/UI/CLI/Commands';
