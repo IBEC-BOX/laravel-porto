@@ -2,6 +2,6 @@
 
 namespace App\Ship\Abstracts\Actions;
 
-abstract class SubAction extends Action
+abstract class AbstractAction
 {
 }

@@ -2,6 +2,6 @@
 
 namespace App\Ship\Abstracts\Middlewares;
 
-abstract class Middleware
+abstract class AbstractMiddleware
 {
 }

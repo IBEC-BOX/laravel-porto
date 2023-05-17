@@ -2,9 +2,9 @@
 
 namespace App\Ship\Abstracts\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as LaravelAuthServiceProvider;
+use AdminKit\Porto\Abstracts\AuthServiceProvider;
 
-abstract class AuthServiceProvider extends LaravelAuthServiceProvider
+abstract class AbstractAuthServiceProvider extends AuthServiceProvider
 {
     /**
      * The policy mappings for the application.

@@ -2,6 +2,6 @@
 
 namespace App\Ship\Abstracts\Listeners;
 
-abstract class Listener
+abstract class AbstractListener
 {
 }
