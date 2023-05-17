@@ -2,6 +2,11 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.3 - 2023-05-17
+
+- rename stub files, add prepend Abstract to name
+- fix registerMiddlewareGroups function
+
 ## v2.0.2 - 2023-05-14
 
 fix autoload service providers
