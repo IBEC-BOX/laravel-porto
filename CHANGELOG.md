@@ -2,6 +2,10 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.4 - 2023-05-17
+
+- require laravel 10
+
 ## v2.0.3 - 2023-05-17
 
 - rename stub files, add prepend Abstract to name
