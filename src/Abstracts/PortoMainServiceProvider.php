@@ -21,7 +21,7 @@ abstract class PortoMainServiceProvider extends LaravelServiceProvider
 
     public function __construct($app)
     {
-        $this->containerPath = realpath(dirname((new \ReflectionClass($this))->getFileName()) . '/..');
+        $this->containerPath = realpath(dirname((new \ReflectionClass($this))->getFileName()).'/..');
         parent::__construct($app);
     }
 

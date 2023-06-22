@@ -8,8 +8,8 @@ trait ViewsLoaderTrait
 {
     public function loadViewsFromContainers($containerPath): void
     {
-        $containerViewDirectory = $containerPath . '/UI/WEB/Views/';
-        $containerMailTemplatesDirectory = $containerPath . '/Mails/Templates/';
+        $containerViewDirectory = $containerPath.'/UI/WEB/Views/';
+        $containerMailTemplatesDirectory = $containerPath.'/Mails/Templates/';
 
         $containerName = basename($containerPath);
         $pathParts = explode(DIRECTORY_SEPARATOR, $containerPath);
