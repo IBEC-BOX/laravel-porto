@@ -3,14 +3,13 @@
 namespace AdminKit\Porto\Loaders;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 trait ViewsLoaderTrait
 {
     public function loadViewsFromContainers($containerPath): void
     {
-        $containerViewDirectory = $containerPath.'/UI/WEB/Views/';
-        $containerMailTemplatesDirectory = $containerPath.'/Mails/Templates/';
+        $containerViewDirectory = $containerPath . '/UI/WEB/Views/';
+        $containerMailTemplatesDirectory = $containerPath . '/Mails/Templates/';
 
         $containerName = basename($containerPath);
         $pathParts = explode(DIRECTORY_SEPARATOR, $containerPath);
@@ -20,17 +19,10 @@ trait ViewsLoaderTrait
         $this->loadViews($containerMailTemplatesDirectory, $containerName, $sectionName);
     }
 
-    private function loadViews($directory, $containerName, $sectionName = null): void
+    private function loadViews($directory, $containerName): void
     {
         if (File::isDirectory($directory)) {
-            $this->loadViewsFrom($directory, $this->buildViewNamespace($sectionName, $containerName));
+            $this->loadViewsFrom($directory, "container@$containerName");
         }
-    }
-
-    private function buildViewNamespace(?string $sectionName, string $containerName): string
-    {
-        return $sectionName ? (Str::camel($sectionName).'@'.Str::camel($containerName)) : Str::camel(
-            $containerName
-        );
     }
 }

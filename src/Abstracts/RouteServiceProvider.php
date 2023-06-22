@@ -13,7 +13,7 @@ abstract class RouteServiceProvider extends LaravelRouteServiceProvider
 
     public function __construct($app)
     {
-        $this->containerPath = dirname((new \ReflectionClass($this))->getFileName()).'/..';
+        $this->containerPath = realpath(dirname((new \ReflectionClass($this))->getFileName()) . '/..');
         parent::__construct($app);
     }
 
