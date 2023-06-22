@@ -2,6 +2,10 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.0.6 - 2023-06-22
+
+- fix: loadViews with prefix "container@{containerName}::{view.name}"
+
 ## v2.0.5 - 2023-05-17
 
 - fix run-tests.yml
