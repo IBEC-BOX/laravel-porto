@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ modelNamespace }};
+use App\Ship\Abstracts\Factories\AbstractFactory;
+
+class {{ class }} extends AbstractFactory
+{
+    protected $model = {{ modelName }}::class;
+
+    public function definition(): array
+    {
+        return [
+            //
+        ];
+    }
+}

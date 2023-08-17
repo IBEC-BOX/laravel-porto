@@ -13,4 +13,16 @@ class ModelGenerator extends AbstractGeneratorCommand
     protected $stubName = 'model.stub';
 
     protected $folderInsideContainer = 'Models';
+
+    protected function getVariables()
+    {
+        $factoryNamespace = $this->rootNamespace() .
+            $this->argument('folder') . '\\' .
+            $this->argument('container') . '\\Database\\Factories\\' .
+            $this->argument('name') . 'Factory';
+
+        return [
+            '{{ factoryNamespace }}' => $factoryNamespace,
+        ];
+    }
 }
