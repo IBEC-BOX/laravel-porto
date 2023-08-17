@@ -2,10 +2,10 @@
 
 namespace {{ namespace }};
 
+use App\Ship\Abstracts\Resources\AbstractJsonResource;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class {{ class }} extends JsonResource
+class {{ class }} extends AbstractJsonResource
 {
     public function toArray(Request $request): array
     {
