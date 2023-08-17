@@ -5,6 +5,7 @@ namespace AdminKit\Porto;
 use AdminKit\Porto\Commands\ApiControllerGenerator;
 use AdminKit\Porto\Commands\ApiResourceGenerator;
 use AdminKit\Porto\Commands\ApiRoutesGenerator;
+use AdminKit\Porto\Commands\ProviderGenerator;
 use AdminKit\Porto\Commands\ModelGenerator;
 use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use Spatie\LaravelPackageTools\Package;
@@ -21,6 +22,7 @@ class PortoServiceProvider extends PackageServiceProvider
                 ApiControllerGenerator::class,
                 ApiRoutesGenerator::class,
                 ApiResourceGenerator::class,
+                ProviderGenerator::class,
             ])
             ->hasConfigFile();
     }

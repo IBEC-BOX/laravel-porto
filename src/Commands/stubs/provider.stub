@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Ship\Abstracts\Providers\AbstractServiceProvider;
+
+class {{ class }} extends AbstractServiceProvider
+{
+    public function register()
+    {
+        //
+    }
+
+    public function boot()
+    {
+        //
+    }
+}
