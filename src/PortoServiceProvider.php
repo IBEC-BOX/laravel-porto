@@ -7,6 +7,7 @@ use AdminKit\Porto\Commands\ApiResourceGenerator;
 use AdminKit\Porto\Commands\ApiRoutesGenerator;
 use AdminKit\Porto\Commands\ProviderGenerator;
 use AdminKit\Porto\Commands\ModelGenerator;
+use AdminKit\Porto\Commands\ApiRequestGenerator;
 use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -18,11 +19,12 @@ class PortoServiceProvider extends PackageServiceProvider
         $package
             ->name('porto')
             ->hasCommands([
+                ProviderGenerator::class,
                 ModelGenerator::class,
                 ApiControllerGenerator::class,
                 ApiRoutesGenerator::class,
                 ApiResourceGenerator::class,
-                ProviderGenerator::class,
+                ApiRequestGenerator::class,
             ])
             ->hasConfigFile();
     }

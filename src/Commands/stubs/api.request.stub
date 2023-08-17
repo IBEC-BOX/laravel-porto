@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Ship\Abstracts\Requests\AbstractRequest;
+
+class {{ class }} extends AbstractRequest
+{
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+}
