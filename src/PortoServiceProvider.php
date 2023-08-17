@@ -6,6 +6,7 @@ use AdminKit\Porto\Commands\ApiControllerGenerator;
 use AdminKit\Porto\Commands\ApiResourceGenerator;
 use AdminKit\Porto\Commands\ApiRoutesGenerator;
 use AdminKit\Porto\Commands\FactoryGenerator;
+use AdminKit\Porto\Commands\FilamentResourceGenerator;
 use AdminKit\Porto\Commands\MigrationGenerator;
 use AdminKit\Porto\Commands\ProviderGenerator;
 use AdminKit\Porto\Commands\ModelGenerator;
@@ -29,6 +30,7 @@ class PortoServiceProvider extends PackageServiceProvider
                 ApiRoutesGenerator::class,
                 ApiResourceGenerator::class,
                 ApiRequestGenerator::class,
+                FilamentResourceGenerator::class,
             ])
             ->hasConfigFile();
     }

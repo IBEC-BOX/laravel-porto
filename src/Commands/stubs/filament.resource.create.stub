@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }}\{{ class }}\Pages;
+
+use Filament\Resources\Pages\CreateRecord;
+use {{ namespace }}\{{ class }};
+
+class Create{{ modelName }} extends CreateRecord
+{
+    protected static string $resource = {{ class }}::class;
+
+    protected function getActions(): array
+    {
+        return [
+            //
+        ];
+    }
+}

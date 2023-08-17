@@ -26,12 +26,18 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
             : __DIR__ . '/stubs/' . $this->stubName;
     }
 
+    protected function getContainerNamespace()
+    {
+        return str_replace(
+            '/',
+            '\\',
+            $this->rootNamespace() . $this->argument('folder') . '/' . $this->argument('container')
+        );
+    }
+
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '/' .
-            $this->argument('folder') . '/' .
-            $this->argument('container') . '/' .
-            $this->folderInsideContainer;
+        return $this->getContainerNamespace() . '\\' . str_replace('/', '\\', $this->folderInsideContainer);
     }
 
     protected function getVariables()
