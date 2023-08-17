@@ -2,6 +2,7 @@
 
 namespace AdminKit\Porto;
 
+use AdminKit\Porto\Commands\ModelGenerator;
 use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -12,6 +13,9 @@ class PortoServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('porto')
+            ->hasCommands([
+                ModelGenerator::class,
+            ])
             ->hasConfigFile();
     }
 

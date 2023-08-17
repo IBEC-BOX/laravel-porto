@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Ship\Abstracts\Models\AbstractModel;
+
+class {{ class }} extends AbstractModel
+{
+    protected $fillable = [
+        //
+    ];
+}
