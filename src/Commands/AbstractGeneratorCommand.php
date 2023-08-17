@@ -28,6 +28,34 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '/' . $this->argument('folder') . '/' . $this->argument('container') . '/' . $this->folderInsideContainer;
+        return $rootNamespace . '/' .
+            $this->argument('folder') . '/' .
+            $this->argument('container') . '/' .
+            $this->folderInsideContainer;
+    }
+
+    protected function getVariables()
+    {
+        return [
+            // '{{ search }}' => 'replace',
+        ];
+    }
+
+    protected function replaceVariables(&$stub)
+    {
+        foreach ($this->getVariables() as $key => $value) {
+            $stub = str_replace($key, $value, $stub);
+        }
+
+        return $this;
+    }
+
+    protected function buildClass($name)
+    {
+        $stub = $this->files->get($this->getStub());
+
+        return $this->replaceVariables($stub)
+            ->replaceNamespace($stub, $name)
+            ->replaceClass($stub, $name);
     }
 }
