@@ -4,7 +4,7 @@ namespace AdminKit\Porto\Commands;
 
 class ApiRequestGenerator extends AbstractGeneratorCommand
 {
-    protected $name = 'make:porto-request';
+    protected $name = 'make:porto-api-request';
 
     protected $description = 'Create a new Request class';
 
