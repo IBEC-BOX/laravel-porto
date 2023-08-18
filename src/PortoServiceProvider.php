@@ -12,7 +12,6 @@ use AdminKit\Porto\Commands\FilamentResourceGenerator;
 use AdminKit\Porto\Commands\MigrationGenerator;
 use AdminKit\Porto\Commands\ModelGenerator;
 use AdminKit\Porto\Commands\ProviderGenerator;
-use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -39,10 +38,11 @@ class PortoServiceProvider extends PackageServiceProvider
 
     public function bootingPackage(): void
     {
+        //
     }
 
     public function registeringPackage(): void
     {
-        $this->app->register(GeneratorsServiceProvider::class);
+        //
     }
 }

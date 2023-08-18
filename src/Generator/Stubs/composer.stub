@@ -1,6 +1,0 @@
-{
-    "name": "porto/{{_container-name}}",
-    "description": "{{container-name}} Porto Container.",
-    "require": {
-    }
-}
