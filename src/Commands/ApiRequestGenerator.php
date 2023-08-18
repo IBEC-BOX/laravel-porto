@@ -13,4 +13,9 @@ class ApiRequestGenerator extends AbstractGeneratorCommand
     protected $stubName = 'api.request.stub';
 
     protected $folderInsideContainer = 'UI/API/Requests';
+
+    protected function getNameInput()
+    {
+        return parent::getNameInput() . 'Request';
+    }
 }

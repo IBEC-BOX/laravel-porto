@@ -13,4 +13,9 @@ class ApiControllerGenerator extends AbstractGeneratorCommand
     protected $stubName = 'api.controller.stub';
 
     protected $folderInsideContainer = 'UI/API/Controllers';
+
+    protected function getNameInput()
+    {
+        return parent::getNameInput() . 'Controller';
+    }
 }

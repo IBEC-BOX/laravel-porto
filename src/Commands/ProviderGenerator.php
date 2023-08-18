@@ -13,4 +13,9 @@ class ProviderGenerator extends AbstractGeneratorCommand
     protected $stubName = 'provider.stub';
 
     protected $folderInsideContainer = 'Providers';
+
+    protected function getNameInput()
+    {
+        return parent::getNameInput() . 'ServiceProvider';
+    }
 }

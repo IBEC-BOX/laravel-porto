@@ -13,4 +13,9 @@ class ApiResourceGenerator extends AbstractGeneratorCommand
     protected $stubName = 'api.resource.stub';
 
     protected $folderInsideContainer = 'UI/API/Resources';
+
+    protected function getNameInput()
+    {
+        return parent::getNameInput() . 'Resource';
+    }
 }
