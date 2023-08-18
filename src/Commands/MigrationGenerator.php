@@ -8,7 +8,7 @@ class MigrationGenerator extends AbstractGeneratorCommand
 
     protected $description = 'Create a new Migration file';
 
-    protected $type = 'Migration';
+    protected $type = 'table';
 
     protected $stubName = 'migration.create.stub';
 

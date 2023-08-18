@@ -2,6 +2,8 @@
 
 namespace AdminKit\Porto\Commands;
 
+use Illuminate\Support\Str;
+
 class ApiRoutesGenerator extends AbstractGeneratorCommand
 {
     protected $name = 'make:porto-api-routes';
@@ -22,7 +24,7 @@ class ApiRoutesGenerator extends AbstractGeneratorCommand
         return [
             '{{ controllerNamespace }}' => $controllerNamespace,
             '{{ controllerName }}' => $this->argument('name') . 'Controller',
-            '{{ route }}' => strtolower($this->argument('name')),
+            '{{ route }}' => Str::snake($this->argument('name'), '-'),
         ];
     }
 
