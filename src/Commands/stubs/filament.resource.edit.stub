@@ -2,11 +2,11 @@
 
 namespace {{ namespace }}\{{ class }}\Pages;
 
+use App\Ship\Abstracts\Filament\Pages\AbstractEditRecord;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\EditRecord;
 use {{ namespace }}\{{ class }};
 
-class Edit{{ modelName }} extends EditRecord
+class Edit{{ modelName }} extends AbstractEditRecord
 {
     protected static string $resource = {{ class }}::class;
 

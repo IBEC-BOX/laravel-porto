@@ -2,14 +2,14 @@
 
 namespace {{ namespace }};
 
+use App\Ship\Abstracts\Filament\AbstractResource;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use {{ modelNamespace }};
 use {{ namespace }}\{{ class }}\Pages;
 
-class {{ class }} extends Resource
+class {{ class }} extends AbstractResource
 {
     protected static ?string $model = {{ modelName }}::class;
 

@@ -2,7 +2,7 @@
 
 namespace {{ namespace }}\{{ class }}\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
+use App\Ship\Abstracts\Filament\Pages\AbstractCreateRecord;
 use {{ namespace }}\{{ class }};
 
 class Create{{ modelName }} extends CreateRecord

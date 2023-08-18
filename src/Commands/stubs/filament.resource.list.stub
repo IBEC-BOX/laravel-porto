@@ -2,11 +2,11 @@
 
 namespace {{ namespace }}\{{ class }}\Pages;
 
+use App\Ship\Abstracts\Filament\Pages\AbstractListRecords;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\ListRecords;
 use {{ namespace }}\{{ class }};
 
-class List{{ modelName }} extends ListRecords
+class List{{ modelName }} extends AbstractListRecords
 {
     protected static string $resource = {{ class }}::class;
 
