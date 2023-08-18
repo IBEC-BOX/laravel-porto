@@ -21,36 +21,53 @@ class ApiControllerGenerator extends AbstractGeneratorCommand
     {
         parent::handle();
 
+        $arguments = [
+            'name' => $name = $this->argument('name'),
+            'container' => $this->argument('container'),
+            'folder' => $this->argument('folder'),
+        ];
+
         if ($this->option('requests')) {
-            $this->call('make:porto-api-request', [
-                'name' => 'Create' .$this->argument('name'),
-                'container' => $this->argument('container'),
-                'folder' => $this->argument('folder'),
-            ]);
-            $this->call('make:porto-api-request', [
-                'name' => 'Update' .$this->argument('name'),
-                'container' => $this->argument('container'),
-                'folder' => $this->argument('folder'),
-            ]);
+            $this->call('make:porto-api-request', array_merge($arguments, ['name' => "Create$name"]));
+            $this->call('make:porto-api-request', array_merge($arguments, ['name' => "Update$name"]));
+        }
+
+        if ($this->option('resource')) {
+            $this->call('make:porto-api-resource', $arguments);
         }
     }
 
     protected function getVariables()
     {
+        $name = $this->argument('name');
         $storeRequestName = $updateRequestName = 'Request';
         $useNamespaces = 'use Illuminate\Http\Request;';
+        $bodyOfIndexFunction = '//';
+        $bodyOfShowFunction = '//';
 
         if ($this->option('requests')) {
-            $storeRequestName = 'Create' . $this->argument('name') . 'Request';
-            $updateRequestName = 'Update' . $this->argument('name') . 'Request';
+            $storeRequestName = "Create{$name}Request";
+            $updateRequestName = "Update{$name}Request";
             $useNamespaces = 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Requests\\$storeRequestName;\n";
             $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Requests\\$updateRequestName;";
+        }
+
+        if ($this->option('resource')) {
+            $modelName = $name;
+            $resourceName ="{$name}Resource";
+            $useNamespaces .= "\n";
+            $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Resources\\$resourceName;\n";
+            $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\Models\\$modelName;";
+            $bodyOfIndexFunction = "return $resourceName::collection($modelName::all());";
+            $bodyOfShowFunction = "return $resourceName::make($modelName::findOrFail(\$id));";
         }
 
         return [
             '{{ useNamespaces }}' => $useNamespaces,
             '{{ storeRequestName }}' => $storeRequestName,
             '{{ updateRequestName }}' => $updateRequestName,
+            '{{ bodyOfIndexFunction }}' => $bodyOfIndexFunction,
+            '{{ bodyOfShowFunction }}' => $bodyOfShowFunction,
         ];
     }
 
@@ -62,18 +79,8 @@ class ApiControllerGenerator extends AbstractGeneratorCommand
     protected function getOptions()
     {
         return [
-            [
-                'resource',
-                'r',
-                InputOption::VALUE_NONE,
-                'Indicates if the generated controller should be a resource controller'
-            ],
-            [
-                'requests',
-                'R',
-                InputOption::VALUE_NONE,
-                'Create new form request classes and use them in the resource controller'
-            ],
+            ['resource', 'r', InputOption::VALUE_NONE, 'Create new resource class'],
+            ['requests', 'R', InputOption::VALUE_NONE, 'Create new form request classes'],
         ];
     }
 }

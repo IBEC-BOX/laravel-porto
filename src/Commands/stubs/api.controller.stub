@@ -9,7 +9,7 @@ class {{ class }} extends AbstractApiController
 {
     public function index()
     {
-        //
+        {{ bodyOfIndexFunction }}
     }
 
     public function store({{ storeRequestName }} $request)
@@ -19,7 +19,7 @@ class {{ class }} extends AbstractApiController
 
     public function show(string $id)
     {
-        //
+        {{ bodyOfShowFunction }}
     }
 
     public function update({{ updateRequestName }} $request, string $id)
