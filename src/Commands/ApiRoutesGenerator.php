@@ -16,9 +16,7 @@ class ApiRoutesGenerator extends AbstractGeneratorCommand
 
     protected function getVariables()
     {
-        $controllerNamespace = $this->rootNamespace() .
-            $this->argument('folder') . '\\' .
-            $this->argument('container') . '\\UI\\API\\Controllers\\' .
+        $controllerNamespace = $this->getContainerNamespace() . '\\UI\\API\\Controllers\\' .
             $this->argument('name') . 'Controller';
 
         return [
