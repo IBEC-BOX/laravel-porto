@@ -18,13 +18,13 @@ class ApiRoutesGenerator extends AbstractGeneratorCommand
 
     protected function getVariables()
     {
-        $controllerNamespace = $this->getContainerNamespace() . '\\UI\\API\\Controllers\\' .
-            $this->argument('name') . 'Controller';
+        $name = $this->argument('name');
+        $controllerNamespace = $this->getContainerNamespace() . "\\UI\\API\\Controllers\\{$name}Controller";
 
         return [
             '{{ controllerNamespace }}' => $controllerNamespace,
-            '{{ controllerName }}' => $this->argument('name') . 'Controller',
-            '{{ route }}' => Str::snake($this->argument('name'), '-'),
+            '{{ controllerName }}' => "{$name}Controller",
+            '{{ route }}' => Str::snake(Str::plural($name), '-'),
         ];
     }
 

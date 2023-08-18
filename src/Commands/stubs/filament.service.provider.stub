@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ resourceNamespace }};
+use App\Ship\Abstracts\Providers\AbstractFilamentServiceProvider;
+
+class FilamentServiceProvider extends AbstractFilamentServiceProvider
+{
+    public static string $name = '{{ name }}';
+
+    protected array $resources = [
+        {{ class }}Resource::class,
+    ];
+}

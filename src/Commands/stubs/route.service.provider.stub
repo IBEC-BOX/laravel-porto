@@ -1,0 +1,9 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Ship\Abstracts\Providers\AbstractRouteServiceProvider;
+
+class RouteServiceProvider extends AbstractRouteServiceProvider
+{
+}

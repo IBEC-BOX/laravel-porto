@@ -3,6 +3,7 @@
 namespace AdminKit\Porto\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 
 abstract class AbstractGeneratorCommand extends GeneratorCommand
@@ -63,5 +64,32 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         return $this->replaceVariables($stub)
             ->replaceNamespace($stub, $name)
             ->replaceClass($stub, $name);
+    }
+
+    protected function makeFileInContainer($filePath, $stubName)
+    {
+        $stubPath = file_exists($path = base_path('stubs/porto/' . $stubName))
+            ? $path
+            : __DIR__ . '/stubs/' . $stubName;
+
+        $name = $this->qualifyClass($this->getNameInput());
+        $stub = $this->files->get($stubPath);
+        $stub = $this->replaceVariables($stub)->replaceNamespace($stub, $name)->replaceClass($stub, $name);
+
+        $fullPath = $this->getContainerPath() . DIRECTORY_SEPARATOR . $filePath;
+        $this->makeDirectory($fullPath);
+
+        if (!$this->files->exists($fullPath)) {
+            $this->files->put($fullPath, $this->sortImports($stub));
+            $this->components->info(sprintf('File [%s] created successfully.', $filePath));
+        } else {
+            $this->components->error("[$filePath] already exists.");
+        }
+    }
+
+    protected function getContainerPath()
+    {
+        $containerName = Str::ucfirst(Str::camel($this->argument('name')));
+        return app_path($this->argument('folder') . DIRECTORY_SEPARATOR . $containerName);
     }
 }
