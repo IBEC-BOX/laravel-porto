@@ -16,6 +16,6 @@ class ProviderGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'ServiceProvider';
+        return parent::getNameInput().'ServiceProvider';
     }
 }

@@ -20,15 +20,15 @@ class MigrationGenerator extends AbstractGeneratorCommand
     {
         if ($this->checkMigrationFileExists()) {
             return;
-        };
+        }
 
         parent::handle();
     }
 
     protected function checkMigrationFileExists(): bool
     {
-        $migrationFolder = $this->getContainerPath() . '/Database/Migrations';
-        if (!$this->files->exists($migrationFolder)) {
+        $migrationFolder = $this->getContainerPath().'/Database/Migrations';
+        if (! $this->files->exists($migrationFolder)) {
             return false;
         }
 
@@ -36,6 +36,7 @@ class MigrationGenerator extends AbstractGeneratorCommand
             $migrationName = 'create_'.$this->getTableName().'_table';
             if (Str::contains($filename, $migrationName)) {
                 $this->components->error("$this->type already exists.");
+
                 return true;
             }
         }
@@ -52,7 +53,7 @@ class MigrationGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return now()->format('Y_m_d_His') . '_create_' . $this->getTableName() . '_table';
+        return now()->format('Y_m_d_His').'_create_'.$this->getTableName().'_table';
     }
 
     protected function getTableName()

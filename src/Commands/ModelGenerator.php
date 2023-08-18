@@ -16,8 +16,8 @@ class ModelGenerator extends AbstractGeneratorCommand
 
     protected function getVariables()
     {
-        $factoryNamespace = $this->getContainerNamespace() . '\\Database\\Factories\\' .
-            $this->argument('name') . 'Factory';
+        $factoryNamespace = $this->getContainerNamespace().'\\Database\\Factories\\'.
+            $this->argument('name').'Factory';
 
         return [
             '{{ factoryNamespace }}' => $factoryNamespace,

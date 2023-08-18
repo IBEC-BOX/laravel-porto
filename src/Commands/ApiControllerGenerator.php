@@ -2,7 +2,6 @@
 
 namespace AdminKit\Porto\Commands;
 
-use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 class ApiControllerGenerator extends AbstractGeneratorCommand
@@ -48,16 +47,16 @@ class ApiControllerGenerator extends AbstractGeneratorCommand
         if ($this->option('requests')) {
             $storeRequestName = "Create{$name}Request";
             $updateRequestName = "Update{$name}Request";
-            $useNamespaces = 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Requests\\$storeRequestName;\n";
-            $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Requests\\$updateRequestName;";
+            $useNamespaces = 'use '.$this->getContainerNamespace()."\\UI\\API\\Requests\\$storeRequestName;\n";
+            $useNamespaces .= 'use '.$this->getContainerNamespace()."\\UI\\API\\Requests\\$updateRequestName;";
         }
 
         if ($this->option('resource')) {
             $modelName = $name;
-            $resourceName ="{$name}Resource";
+            $resourceName = "{$name}Resource";
             $useNamespaces .= "\n";
-            $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\UI\\API\\Resources\\$resourceName;\n";
-            $useNamespaces .= 'use ' . $this->getContainerNamespace() . "\\Models\\$modelName;";
+            $useNamespaces .= 'use '.$this->getContainerNamespace()."\\UI\\API\\Resources\\$resourceName;\n";
+            $useNamespaces .= 'use '.$this->getContainerNamespace()."\\Models\\$modelName;";
             $bodyOfIndexFunction = "return $resourceName::collection($modelName::all());";
             $bodyOfShowFunction = "return $resourceName::make($modelName::findOrFail(\$id));";
         }
@@ -73,7 +72,7 @@ class ApiControllerGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'Controller';
+        return parent::getNameInput().'Controller';
     }
 
     protected function getOptions()

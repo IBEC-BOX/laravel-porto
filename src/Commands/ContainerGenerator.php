@@ -16,7 +16,7 @@ class ContainerGenerator extends AbstractGeneratorCommand
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the ' . strtolower($this->type)],
+            ['name', InputArgument::REQUIRED, 'The name of the '.strtolower($this->type)],
             ['folder', InputArgument::OPTIONAL, 'The folder name', 'Containers'],
         ];
     }
@@ -45,9 +45,9 @@ class ContainerGenerator extends AbstractGeneratorCommand
     {
         return [
             '{{ class }}' => $name = Str::ucfirst(Str::singular($this->argument('name'))),
-            '{{ namespace }}' => $this->getContainerNamespace() . '\\Providers',
+            '{{ namespace }}' => $this->getContainerNamespace().'\\Providers',
             '{{ name }}' => Str::snake($name, '-'),
-            '{{ resourceNamespace }}' => $this->getContainerNamespace() . "\\UI\\Filament\\Resources\\{$name}Resource",
+            '{{ resourceNamespace }}' => $this->getContainerNamespace()."\\UI\\Filament\\Resources\\{$name}Resource",
         ];
     }
 

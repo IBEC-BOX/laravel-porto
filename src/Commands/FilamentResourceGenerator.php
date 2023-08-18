@@ -30,7 +30,7 @@ class FilamentResourceGenerator extends AbstractGeneratorCommand
     {
         return [
             '{{ modelName }}' => $name = $this->argument('name'),
-            '{{ modelNamespace }}' => $this->getContainerNamespace() . '\\Models\\' . $name,
+            '{{ modelNamespace }}' => $this->getContainerNamespace().'\\Models\\'.$name,
             '{{ label }}' => $name,
             '{{ pluralLabel }}' => Str::plural($name),
         ];
@@ -38,14 +38,14 @@ class FilamentResourceGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'Resource';
+        return parent::getNameInput().'Resource';
     }
 
     protected function makeFilamentResourcePage($name, $page)
     {
-        $stubPath = file_exists($path = base_path('stubs/porto/' . 'filament.resource.' . strtolower($page) . '.stub'))
+        $stubPath = file_exists($path = base_path('stubs/porto/'.'filament.resource.'.strtolower($page).'.stub'))
             ? $path
-            : __DIR__ . '/stubs/' . 'filament.resource.' . strtolower($page) . '.stub';
+            : __DIR__.'/stubs/'.'filament.resource.'.strtolower($page).'.stub';
 
         $stub = $this->files->get($stubPath);
         $stub = $this->replaceVariables($stub)
@@ -53,9 +53,9 @@ class FilamentResourceGenerator extends AbstractGeneratorCommand
             ->replaceClass($stub, $name);
 
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-        $pageFilepath = $this->laravel['path'] . '/' .
-            str_replace('\\', '/', $name) . '/Pages/' .
-            ucfirst($page) . $this->argument('name') . '.php';
+        $pageFilepath = $this->laravel['path'].'/'.
+            str_replace('\\', '/', $name).'/Pages/'.
+            ucfirst($page).$this->argument('name').'.php';
         $this->makeDirectory($pageFilepath);
 
         $this->files->put($pageFilepath, $this->sortImports($stub));

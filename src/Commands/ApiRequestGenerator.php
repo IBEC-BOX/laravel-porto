@@ -16,6 +16,6 @@ class ApiRequestGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'Request';
+        return parent::getNameInput().'Request';
     }
 }

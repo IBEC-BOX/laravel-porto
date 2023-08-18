@@ -16,6 +16,6 @@ class ApiResourceGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'Resource';
+        return parent::getNameInput().'Resource';
     }
 }

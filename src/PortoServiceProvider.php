@@ -3,15 +3,15 @@
 namespace AdminKit\Porto;
 
 use AdminKit\Porto\Commands\ApiControllerGenerator;
+use AdminKit\Porto\Commands\ApiRequestGenerator;
 use AdminKit\Porto\Commands\ApiResourceGenerator;
 use AdminKit\Porto\Commands\ApiRoutesGenerator;
 use AdminKit\Porto\Commands\ContainerGenerator;
 use AdminKit\Porto\Commands\FactoryGenerator;
 use AdminKit\Porto\Commands\FilamentResourceGenerator;
 use AdminKit\Porto\Commands\MigrationGenerator;
-use AdminKit\Porto\Commands\ProviderGenerator;
 use AdminKit\Porto\Commands\ModelGenerator;
-use AdminKit\Porto\Commands\ApiRequestGenerator;
+use AdminKit\Porto\Commands\ProviderGenerator;
 use AdminKit\Porto\Generator\GeneratorsServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

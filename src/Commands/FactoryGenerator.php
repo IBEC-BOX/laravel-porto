@@ -17,7 +17,7 @@ class FactoryGenerator extends AbstractGeneratorCommand
     protected function getVariables()
     {
         $modelName = $this->argument('name');
-        $modelNamespace = $this->getContainerNamespace() . '\\Models\\' . $this->argument('name');
+        $modelNamespace = $this->getContainerNamespace().'\\Models\\'.$this->argument('name');
 
         return [
             '{{ modelName }}' => $modelName,
@@ -27,6 +27,6 @@ class FactoryGenerator extends AbstractGeneratorCommand
 
     protected function getNameInput()
     {
-        return parent::getNameInput() . 'Factory';
+        return parent::getNameInput().'Factory';
     }
 }
