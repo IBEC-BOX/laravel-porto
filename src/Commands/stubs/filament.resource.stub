@@ -2,14 +2,14 @@
 
 namespace {{ namespace }};
 
-use App\Ship\Abstracts\Filament\AbstractResource;
+use App\Ship\Abstracts\Filament\AbstractFilamentResource;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Tables;
 use {{ modelNamespace }};
 use {{ namespace }}\{{ class }}\Pages;
 
-class {{ class }} extends AbstractResource
+class {{ class }} extends AbstractFilamentResource
 {
     protected static ?string $model = {{ modelName }}::class;
 
@@ -60,16 +60,16 @@ class {{ class }} extends AbstractResource
 
     public static function getLabel(): ?string
     {
-        return __('{{ class }}');
+        return __('{{ label }}');
     }
 
     public static function getPluralLabel(): ?string
     {
-        return __('{{ class }}');
+        return __('{{ pluralLabel }}');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('{{ class }}');
+        return __('{{ pluralLabel }}');
     }
 }
