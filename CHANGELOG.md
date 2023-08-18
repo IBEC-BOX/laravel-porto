@@ -2,6 +2,22 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.1.0 - 2023-08-18
+
+- refactor: remove unused old generator
+- feat: add ContainerGenerator command
+- feat: add --resource option in ControllerGenerator command
+- feat: add --requests parameter in ControllerGenerator
+- feat: add FilamentResourceGenerator command
+- feat: add MigrationGenerator command
+- feat: add FactoryGenerator command
+- feat: add ApiRequestGenerator command
+- feat: add ProviderGenerator command
+- feat: add ApiResourceGenerator command
+- feat: add ApiRoutesGenerator command
+- feat: add ControllerApiGenerator command
+- feat: add ModelGenerator command
+
 ## v2.0.6 - 2023-06-22
 
 - fix: loadViews with prefix "container@{containerName}::{view.name}"
