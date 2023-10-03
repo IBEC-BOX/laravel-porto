@@ -4,14 +4,14 @@ namespace AdminKit\Porto\Loaders;
 
 trait AutoLoaderTrait
 {
+    use AliasesLoaderTrait;
+    use CommandsLoaderTrait;
     use ConfigsLoaderTrait;
+    use HelpersLoaderTrait;
     use LocalizationLoaderTrait;
     use MigrationsLoaderTrait;
-    use ViewsLoaderTrait;
     use ProvidersLoaderTrait;
-    use CommandsLoaderTrait;
-    use AliasesLoaderTrait;
-    use HelpersLoaderTrait;
+    use ViewsLoaderTrait;
 
     public function registerContainer(): void
     {
