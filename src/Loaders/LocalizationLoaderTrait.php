@@ -11,24 +11,15 @@ trait LocalizationLoaderTrait
     {
         $containerLocaleDirectory = $containerPath.'/Languages';
         $containerName = basename($containerPath);
-        $pathParts = explode(DIRECTORY_SEPARATOR, $containerPath);
-        $sectionName = $pathParts[count($pathParts) - 2];
 
-        $this->loadLocals($containerLocaleDirectory, $containerName, $sectionName);
+        $this->loadLocals($containerLocaleDirectory, $containerName);
     }
 
-    private function loadLocals($directory, $containerName, $sectionName = null): void
+    private function loadLocals($directory, $containerName): void
     {
         if (File::isDirectory($directory)) {
-            $this->loadTranslationsFrom($directory, $this->buildLocaleNamespace($sectionName, $containerName));
+            $this->loadTranslationsFrom($directory, "container@$containerName");
             $this->loadJsonTranslationsFrom($directory);
         }
-    }
-
-    private function buildLocaleNamespace(?string $sectionName, string $containerName): string
-    {
-        return $sectionName ? (Str::camel($sectionName).'@'.Str::camel($containerName)) : Str::camel(
-            $containerName
-        );
     }
 }
