@@ -2,6 +2,10 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.1.1 - 2023-10-03
+
+- fix loading Localizations
+
 ## v2.1.0 - 2023-08-18
 
 - refactor: remove unused old generator
