@@ -5,7 +5,12 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/ibec-box/laravel-porto/fix-php-code-style-issues.yml?branch=2.x&label=code%20style&style=flat-square)](https://github.com/ibec-box/laravel-porto/actions?query=workflow:"Fix+PHP+code+style+issues"+branch:2.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/ibecsystems/laravel-porto.svg?style=flat-square)](https://packagist.org/packages/ibecsystems/laravel-porto)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+## Roadmap
+- [ ] Ship folder generator
+- [ ] Подумать над авторегистрацией MainServiceProvider (импорт в ShipProvider)
+- [ ] Убрать RouteServiceProvider
+- [ ] Внедрить Filament v3
+- [ ] Обновить документацию по Porto (как работает пакет)
 
 ## Installation
 
