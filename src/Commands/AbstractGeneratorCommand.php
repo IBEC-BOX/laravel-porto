@@ -94,4 +94,47 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
         return app_path($this->argument('folder').DIRECTORY_SEPARATOR.$containerName);
     }
+
+    protected function addMainProviderIntoShip(): void
+    {
+        $shipProvider = file_get_contents(app_path('Ship/Providers/ShipProvider.php'));
+        $name = $this->getNameInput();
+        $container = $this->argument('container');
+
+        $imports = trim(
+            Str::before(Str::after($shipProvider, 'namespace App\Ship\Providers;'), "class")
+        );
+        $import = Str::contains($name, 'ServiceProvider') && $name !== 'MainServiceProvider'
+            ? "use {$this->getContainerNamespace()}\Providers\\{$name};"
+            : "use {$this->getContainerNamespace()}\Providers\MainServiceProvider as {$container}ServiceProvider;";
+
+        if (!Str::contains($imports, $import)) {
+            $shipProvider = str_replace(
+                $imports,
+                $imports . PHP_EOL . $import,
+                $shipProvider,
+            );
+            file_put_contents(app_path('Ship/Providers/ShipProvider.php'), $shipProvider);
+        }
+
+        $serviceProviders = trim(
+            Str::before(Str::after($shipProvider, 'public array $serviceProviders = ['), '];')
+        );
+        $serviceProvider = Str::contains($name, 'ServiceProvider') && $name !== 'MainServiceProvider'
+            ? "{$name}::class"
+            : "{$container}ServiceProvider::class";
+
+        if (!Str::contains($serviceProviders, $serviceProvider)) {
+            if (!str_ends_with($serviceProviders, ',')) {
+                $serviceProviders .= ',';
+            }
+
+            $shipProvider = str_replace(
+                $serviceProviders,
+                $serviceProviders . PHP_EOL . '        ' . $serviceProvider,
+                $shipProvider,
+            );
+            file_put_contents(app_path('Ship/Providers/ShipProvider.php'), $shipProvider);
+        }
+    }
 }

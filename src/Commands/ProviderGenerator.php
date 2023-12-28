@@ -18,4 +18,10 @@ class ProviderGenerator extends AbstractGeneratorCommand
     {
         return parent::getNameInput().'ServiceProvider';
     }
+
+    public function handle()
+    {
+        parent::handle();
+        $this->addMainProviderIntoShip();
+    }
 }
