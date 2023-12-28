@@ -120,7 +120,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         $serviceProvider = "{$container}ServiceProvider::class";
 
         if (! Str::contains($serviceProviders, $serviceProvider)) {
-            $trailingComma = !str_ends_with($serviceProviders, ',') ? ',' : '';
+            $trailingComma = ! str_ends_with($serviceProviders, ',') ? ',' : '';
 
             $shipProvider = str_replace(
                 $serviceProviders,
@@ -142,8 +142,8 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         );
         $serviceProvider = "{$name}::class";
 
-        if (!Str::contains($serviceProviders, $serviceProvider)) {
-            $trailingComma = !str_ends_with($serviceProviders, ',') ? ',' : '';
+        if (! Str::contains($serviceProviders, $serviceProvider)) {
+            $trailingComma = ! str_ends_with($serviceProviders, ',') ? ',' : '';
 
             $mainProvider = str_replace(
                 $serviceProviders,
