@@ -57,6 +57,6 @@ class ContainerGenerator extends AbstractGeneratorCommand
         $this->makeFileInContainer('Providers/MainServiceProvider.php', 'main.service.provider.stub');
         $this->makeFileInContainer('Providers/FilamentServiceProvider.php', 'filament.service.provider.stub');
         $this->makeFileInContainer('Providers/RouteServiceProvider.php', 'route.service.provider.stub');
-        $this->addMainProviderIntoShip();
+        $this->importMainProviderToShipProvider();
     }
 }

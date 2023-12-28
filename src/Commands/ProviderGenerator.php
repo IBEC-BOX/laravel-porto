@@ -22,6 +22,11 @@ class ProviderGenerator extends AbstractGeneratorCommand
     public function handle()
     {
         parent::handle();
-        $this->addMainProviderIntoShip();
+
+        $this->makeFileInContainer('Providers/MainServiceProvider.php', 'main.service.provider.stub');
+        $this->makeFileInContainer('Providers/FilamentServiceProvider.php', 'filament.service.provider.stub');
+        $this->makeFileInContainer('Providers/RouteServiceProvider.php', 'route.service.provider.stub');
+
+        $this->importCustomProviderToShipProvider();
     }
 }

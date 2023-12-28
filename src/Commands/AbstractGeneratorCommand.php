@@ -90,23 +90,20 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
     protected function getContainerPath()
     {
-        $containerName = Str::ucfirst(Str::camel($this->argument('name')));
+        $containerName = Str::ucfirst(Str::camel($this->argument('container')));
 
         return app_path($this->argument('folder').DIRECTORY_SEPARATOR.$containerName);
     }
 
-    protected function addMainProviderIntoShip(): void
+    protected function importMainProviderToShipProvider(): void
     {
-        $shipProvider = file_get_contents(app_path('Ship/Providers/ShipProvider.php'));
-        $name = $this->getNameInput();
         $container = $this->argument('container');
+        $shipProvider = file_get_contents(app_path('Ship/Providers/ShipProvider.php'));
 
         $imports = trim(
             Str::before(Str::after($shipProvider, 'namespace App\Ship\Providers;'), 'class')
         );
-        $import = Str::contains($name, 'ServiceProvider') && $name !== 'MainServiceProvider'
-            ? "use {$this->getContainerNamespace()}\Providers\\{$name};"
-            : "use {$this->getContainerNamespace()}\Providers\MainServiceProvider as {$container}ServiceProvider;";
+        $import = "use {$this->getContainerNamespace()}\Providers\MainServiceProvider as {$container}ServiceProvider;";
 
         if (! Str::contains($imports, $import)) {
             $shipProvider = str_replace(
@@ -118,23 +115,42 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         }
 
         $serviceProviders = trim(
-            Str::before(Str::after($shipProvider, 'public array $serviceProviders = ['), '];')
+            Str::before(Str::after($shipProvider, '$serviceProviders = ['), '];')
         );
-        $serviceProvider = Str::contains($name, 'ServiceProvider') && $name !== 'MainServiceProvider'
-            ? "{$name}::class"
-            : "{$container}ServiceProvider::class";
+        $serviceProvider = "{$container}ServiceProvider::class";
 
         if (! Str::contains($serviceProviders, $serviceProvider)) {
-            if (! str_ends_with($serviceProviders, ',')) {
-                $serviceProviders .= ',';
-            }
+            $trailingComma = !str_ends_with($serviceProviders, ',') ? ',' : '';
 
             $shipProvider = str_replace(
                 $serviceProviders,
-                $serviceProviders.PHP_EOL.'        '.$serviceProvider,
+                $serviceProviders.$trailingComma.PHP_EOL.'        '.$serviceProvider,
                 $shipProvider,
             );
             file_put_contents(app_path('Ship/Providers/ShipProvider.php'), $shipProvider);
+        }
+    }
+
+    protected function importCustomProviderToShipProvider(): void
+    {
+        $name = $this->getNameInput();
+        $path = $this->getContainerPath().'/Providers/MainServiceProvider.php';
+        $mainProvider = file_get_contents($path);
+
+        $serviceProviders = trim(
+            Str::before(Str::after($mainProvider, '$serviceProviders = ['), '];')
+        );
+        $serviceProvider = "{$name}::class";
+
+        if (!Str::contains($serviceProviders, $serviceProvider)) {
+            $trailingComma = !str_ends_with($serviceProviders, ',') ? ',' : '';
+
+            $mainProvider = str_replace(
+                $serviceProviders,
+                $serviceProviders.$trailingComma.PHP_EOL.'        '.$serviceProvider,
+                $mainProvider,
+            );
+            file_put_contents($path, $mainProvider);
         }
     }
 }
