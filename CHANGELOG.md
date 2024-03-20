@@ -2,6 +2,12 @@
 
 All notable changes to `Porto` will be documented in this file.
 
+## v2.1.2 - 2024-03-20
+
+Support laravel 11
+
+|**Full Changelog**: https://github.com/IBEC-BOX/laravel-porto/compare/v2.1.1...v2.1.2
+
 ## v2.1.1 - 2023-10-03
 
 - fix loading Localizations
