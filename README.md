@@ -7,7 +7,7 @@
 
 ## Roadmap
 - [ ] Ship folder generator
-- [ ] Подумать над авторегистрацией MainServiceProvider (импорт в ShipProvider)
+- [x] Подумать над авторегистрацией MainServiceProvider (импорт в ShipProvider)
 - [ ] Убрать RouteServiceProvider
 - [ ] Внедрить Filament v3
 - [ ] Обновить документацию по Porto (как работает пакет)
