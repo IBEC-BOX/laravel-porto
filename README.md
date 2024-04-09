@@ -9,7 +9,7 @@
 
 - [ ] Ship folder generator
 - [x] Подумать над авторегистрацией MainServiceProvider (импорт в ShipProvider)
-- [ ] Убрать RouteServiceProvider
+- [x] Убрать RouteServiceProvider
 - [x] Внедрить Filament v3
 - [ ] Обновить документацию по Porto (как работает пакет)
 
