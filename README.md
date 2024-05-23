@@ -79,12 +79,33 @@ Container
 	    │   ├── DTO
 	    │   ├── RequestDTO
 	    │   └── Routes
-	    ├── CLI
-	    │   ├── Routes
-	    │   └── Commands
+	    └── CLI
+	        ├── Routes
+	        └── Commands
+```
+
+Filament v2 Structure:
+
+```
+Container
+	├── Providers
+	│   └── FilamentServiceProvider.php
+	└── UI
+	    └── Filament
+	        └── Resources
+	            └── FilamentResource.php
+```
+
+Filament v3 Structure:
+
+```
+Container
+	└── UI
 	    └── Filament
 	        ├── Resources
+	        │   └── FilamentResource.php
 	        └── FilamentPlugin.php
+            
 ```
 
 ## Testing
